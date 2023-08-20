@@ -1,4 +1,5 @@
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Objects;
 
@@ -7,10 +8,10 @@ public class Task implements Comparable<Task>, Serializable {
     private static final long serialVersionUID = 8493702775882752428L;
     private String title;
     private String description;
-    private Date date;
+    private LocalDate date;
     private String priority;
 
-    public Task(String title, String description, Date date, String priority) {
+    public Task(String title, String description, LocalDate date, String priority) {
         this.title = title;
         this.description = description;
         this.date = date;
@@ -33,11 +34,11 @@ public class Task implements Comparable<Task>, Serializable {
         this.description = description;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

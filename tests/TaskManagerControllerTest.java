@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,47 +14,42 @@ public class TaskManagerControllerTest {
     @BeforeEach
     public void newTaskManagerController() {
         taskManagerController = new TaskManagerController();
-        Date dateTask1 = new Date(2023, 8, 20);
-        taskManagerController.createTask("Finalizar exercício de V&V", "Preciso finalizar o exercício 2 de V&V para a validação do código", dateTask1, "Alta");
-        Date dateTask2 = new Date(2023, 12, 30);
-        taskManagerController.createTask("Estudar inglês", "Preciso estudar os tempos verbais em inglês", dateTask2, "Alta");
-        Date dateTask3 = new Date(2023, 8, 30);
-        taskManagerController.createTask("Comprar presente para o meu pai", "Preciso comprar o presente de aniversário do meu pai", dateTask3, "Média");
+        taskManagerController.createTask("Finalizar exercício de V&V", "Preciso finalizar o exercício 2 de V&V para a validação do código", "20/08/2023", "Alta");
+        taskManagerController.createTask("Estudar inglês", "Preciso estudar os tempos verbais em inglês", "30/12/2023", "Alta");
+        taskManagerController.createTask("Comprar presente para o meu pai", "Preciso comprar o presente de aniversário do meu pai", "30/08/2023", "Média");
     }
 
     @Test
     public void testCreateTask() {
-        Date dateTask = new Date(2023, 9, 9);
-        assertEquals(3, taskManagerController.createTask("Pagar fatura", "Pagar fatura do cartão de crédito", dateTask, "Baixa"));
+        assertEquals(3, taskManagerController.createTask("Pagar fatura", "Pagar fatura do cartão de crédito", "09/09/2023", "Baixa"));
     }
 
     @Test
-    public void testUpdateTitleTask() {
+    public void testUpdateTitleTask() throws Exception {
         assertEquals("Estudar estrutura das frases", taskManagerController.updateTitleTask(1, "Estudar estrutura das frases"));
     }
 
     @Test
-    public void testUpdateDescriptionTask() {
+    public void testUpdateDescriptionTask() throws Exception {
         assertEquals("Preciso estudar a estrutura das frases em inglês", taskManagerController.updateDescriptionTask(1, "Preciso estudar a estrutura das frases em inglês"));
     }
 
     @Test
-    public void testUpdateDateTask() {
-        Date dateTask = new Date(2024, 5, 30);
-        assertEquals(dateTask, taskManagerController.updateDateTask(1, dateTask));
+    public void testUpdateDateTask() throws Exception {
+        assertEquals("30/05/2024", taskManagerController.updateDateTask(1, "30/05/2024"));
     }
 
     @Test
-    public void testUpdatePriorityTask() {
+    public void testUpdatePriorityTask() throws Exception {
         assertEquals("Média", taskManagerController.updatePriorityTask(1, "Média"));
     }
 
     @Test
-    public void testRemoveTask() {
-        Date dateTask = new Date(2023, 8, 20);
+    public void testRemoveTask() throws Exception {
+        LocalDate dateTask = LocalDate.parse("20/08/2023", DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         Task task = new Task("Finalizar exercício de V&V", "Preciso finalizar o exercício 2 de V&V para a validação do código", dateTask, "Alta");
 
-        taskManagerController.removeTask("Finalizar exercício de V&V", "Preciso finalizar o exercício 2 de V&V para a validação do código", dateTask, "Alta");
+        taskManagerController.removeTask("Finalizar exercício de V&V", "Preciso finalizar o exercício 2 de V&V para a validação do código", "20/08/2023", "Alta");
 
         assertFalse(taskManagerController.getTasks().contains(task));
     }
