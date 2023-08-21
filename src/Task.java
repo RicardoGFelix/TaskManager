@@ -1,5 +1,6 @@
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Objects;
 
@@ -63,7 +64,13 @@ public class Task implements Comparable<Task>, Serializable {
     }
 
     @Override
-    public int compareTo(Task o) {
-        return 0;
+    public int compareTo(Task otherTask) {
+        return this.compareTo(otherTask);
+    }
+
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return this.title + " - " + this.description + " - " + this.date.format(formatter) + " - " + this.priority;
     }
 }

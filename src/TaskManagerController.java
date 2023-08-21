@@ -1,6 +1,7 @@
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -88,5 +89,22 @@ public class TaskManagerController {
 
     public List<Task> getTasks() {
         return this.tasks;
+    }
+
+    public String getSortedTasks() throws Exception {
+        try {
+            String result = "";
+
+            TaskComparator comparator = new TaskComparator();
+            Collections.sort(this.tasks, comparator);
+
+            for (int i = 0; i < this.tasks.size(); i++) {
+                result += this.tasks.get(i) + "\n";
+            }
+
+            return result;
+        } catch (Exception e) {
+            throw new Exception(e);
+        }
     }
 }

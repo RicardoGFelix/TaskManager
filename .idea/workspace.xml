@@ -6,9 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="9db608fb-1ba1-44df-96d3-b23491ab2b29" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TaskManager/Task.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TaskManager/Task.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/TaskManager/TaskManagerController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/TaskManager/TaskManagerController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/test/TaskManager/TaskManagerControllerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/test/TaskManager/TaskManagerControllerTest.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Task.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/TaskManagerController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TaskManagerController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tests/TaskManagerControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/tests/TaskManagerControllerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
