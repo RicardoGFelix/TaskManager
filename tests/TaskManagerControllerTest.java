@@ -14,14 +14,15 @@ public class TaskManagerControllerTest {
     @BeforeEach
     public void newTaskManagerController() {
         taskManagerController = new TaskManagerController();
-        taskManagerController.createTask("Finalizar exercício de V&V", "Preciso finalizar o exercício 2 de V&V para a validação do código", "20/08/2023", "Alta");
+        taskManagerController.createTask("Comprar monitor", "Comprar monitor para usar com meu notebook", "30/06/2024", "Baixa");
         taskManagerController.createTask("Estudar inglês", "Preciso estudar os tempos verbais em inglês", "30/12/2023", "Alta");
+        taskManagerController.createTask("Finalizar exercício de V&V", "Preciso finalizar o exercício 2 de V&V para a validação do código", "20/08/2023", "Alta");
         taskManagerController.createTask("Comprar presente para o meu pai", "Preciso comprar o presente de aniversário do meu pai", "30/08/2023", "Média");
     }
 
     @Test
     public void testCreateTask() {
-        assertEquals(3, taskManagerController.createTask("Pagar fatura", "Pagar fatura do cartão de crédito", "09/09/2023", "Baixa"));
+        assertEquals(4, taskManagerController.createTask("Pagar fatura", "Pagar fatura do cartão de crédito", "09/09/2023", "Baixa"));
     }
 
     @Test
@@ -57,5 +58,15 @@ public class TaskManagerControllerTest {
     @Test
     public void testGetTasks() {
         assertNotNull(taskManagerController.getTasks());
+    }
+
+    @Test
+    public void testGetSortedTasks() throws Exception {
+        String sortedTasks = "Finalizar exercício de V&V - " + "Preciso finalizar o exercício 2 de V&V para a validação do código - " + "20/08/2023 - " + "Alta\n" +
+                "Estudar inglês - " + "Preciso estudar os tempos verbais em inglês - " + "30/12/2023 - " + "Alta\n" +
+                "Comprar presente para o meu pai - " + "Preciso comprar o presente de aniversário do meu pai - " + "30/08/2023 - " + "Média\n" +
+                "Comprar monitor - " + "Comprar monitor para usar com meu notebook - " + "30/06/2024 - " + "Baixa\n";
+
+        assertEquals(sortedTasks, taskManagerController.getSortedTasks());
     }
 }
