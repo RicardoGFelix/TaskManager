@@ -28,10 +28,16 @@ public class TaskManagerController {
 
     public String updateTitleTask(int i, String title) throws Exception {
         try {
-            Task task = this.tasks.get(i);
-            task.setTitle(title);
+            String result = "Índice inválido";
 
-            return task.getTitle();
+            if (i >= 0 && i < this.tasks.size()) {
+                Task task = this.tasks.get(i);
+                task.setTitle(title);
+
+                result = task.getTitle();
+            }
+
+            return result;
         } catch (Exception e) {
             throw new Exception(e);
         }
@@ -39,10 +45,16 @@ public class TaskManagerController {
 
     public String updateDescriptionTask(int i, String description) throws Exception {
         try {
-            Task task = this.tasks.get(i);
-            task.setDescription(description);
+            String result = "Índice inválido";
 
-            return task.getDescription();
+            if (i >= 0 && i < this.tasks.size()) {
+                Task task = this.tasks.get(i);
+                task.setDescription(description);
+
+                result = task.getDescription();
+            }
+
+            return result;
         } catch (Exception e) {
             throw new Exception(e);
         }
@@ -50,12 +62,18 @@ public class TaskManagerController {
 
     public String updateDateTask(int i, String date) throws Exception {
         try {
-            Task task = this.tasks.get(i);
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            LocalDate dateTask = LocalDate.parse(date, formatter);
+            String result = "Índice inválido";
 
-            task.setDate(dateTask);
-            return task.getDate().format(formatter);
+            if (i >= 0 && i < this.tasks.size()) {
+                Task task = this.tasks.get(i);
+                DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+                LocalDate dateTask = LocalDate.parse(date, formatter);
+
+                task.setDate(dateTask);
+                result = task.getDate().format(formatter);
+            }
+
+            return result;
         } catch (Exception e) {
             throw new Exception(e);
         }
@@ -63,10 +81,16 @@ public class TaskManagerController {
 
     public String updatePriorityTask(int i, String priority) throws Exception {
         try {
-            Task task = this.tasks.get(i);
-            task.setPriority(priority);
+            String result = "Índice inválido";
 
-            return task.getPriority();
+            if (i >= 0 && i < this.tasks.size()) {
+                Task task = this.tasks.get(i);
+                task.setPriority(priority);
+
+                result = task.getPriority();
+            }
+
+            return result;
         } catch (Exception e) {
             throw new Exception(e);
         }
