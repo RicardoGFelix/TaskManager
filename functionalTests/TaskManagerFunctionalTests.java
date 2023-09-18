@@ -15,12 +15,12 @@ public class TaskManagerFunctionalTests {
     public static final String SUCCESS_TO_CHANGE_LIMIT_DATE = "Data de Vencimento alterada com sucesso!";
     public static final String SUCCESS_TO_CHANGE_PRIORITY = "Prioridade alterada com sucesso!";
     public static final String SUCCESS_TO_REMOVE_TASK = "Tarefa removida com sucesso!";
-    public static final String SUCCESS_TO_LIST_TASKS = "1 - Cozinhar - Preciso cozinhar o almoço - 12/09/2023 - Alta\n" +
-            "2 - Preparar projeto de TCC - Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia - 01/11/2023 - Média\n" +
-            "0 - Comprar papete do Senninha - Preciso comprar a papete do Senninha para passar o réveillon com ela - 30/12/2023 - Baixa\n"
+    public static final String SUCCESS_TO_LIST_TASKS = "1 - Cozinhar - Preciso cozinhar o almoço - 18/09/2023 - Alta\n" +
+            "2 - Preparar projeto do TCC - Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia - 01/11/2023 - Média\n" +
+            "3 - Comprar papete do Senninha - Preciso comprar a papete do Senninha para passar o réveillon com ela - 30/12/2023 - Baixa\n";
 
     @Test
-    public void testSuccessToCreateTask() {
+    public void testSuccessToCreateTask() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
         String titleTask = "Comprar papete do Senninha";
@@ -32,7 +32,7 @@ public class TaskManagerFunctionalTests {
     }
 
     @Test
-    public void testSuccessToCreateTaskWithActualDate() {
+    public void testSuccessToCreateTaskWithActualDate() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
         String titleTask = "Cozinhar";
@@ -46,7 +46,7 @@ public class TaskManagerFunctionalTests {
     }
 
     @Test
-    public void testSuccessToCreateTaskWithMediumPriority() {
+    public void testSuccessToCreateTaskWithMediumPriority() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
         String titleTask = "Preparar projeto de TCC";
@@ -58,7 +58,7 @@ public class TaskManagerFunctionalTests {
     }
 
     @Test
-    public void testErrorToCreateTaskWithEmptyTitle() {
+    public void testErrorToCreateTaskWithEmptyTitle() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
         String titleTask = "";
@@ -70,7 +70,7 @@ public class TaskManagerFunctionalTests {
     }
 
     @Test
-    public void testErrorToCreateTaskWithNullTitle() {
+    public void testErrorToCreateTaskWithNullTitle() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
         String titleTask = null;
@@ -82,7 +82,7 @@ public class TaskManagerFunctionalTests {
     }
 
     @Test
-    public void testErrorToCreateTaskWithNullDescription() {
+    public void testErrorToCreateTaskWithNullDescription() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
         String titleTask = "Criar game de Jogos Digitais";
@@ -94,7 +94,7 @@ public class TaskManagerFunctionalTests {
     }
 
     @Test
-    public void testErrorToCreateTaskWithEmptyLimitDate() {
+    public void testErrorToCreateTaskWithEmptyLimitDate() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
         String titleTask = "Criar game de Jogos Digitais";
@@ -106,7 +106,7 @@ public class TaskManagerFunctionalTests {
     }
 
     @Test
-    public void testErrorToCreateTaskWithNullLimitDate() {
+    public void testErrorToCreateTaskWithNullLimitDate() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
         String titleTask = "Criar game de Jogos Digitais";
@@ -118,7 +118,7 @@ public class TaskManagerFunctionalTests {
     }
 
     @Test
-    public void testErrorToCreateTaskWithPastLimitDate() {
+    public void testErrorToCreateTaskWithPastLimitDate() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
         String titleTask = "Ir ao show de Fagner";
@@ -130,7 +130,7 @@ public class TaskManagerFunctionalTests {
     }
 
     @Test
-    public void testErrorToCreateTaskWithEmptyPriority() {
+    public void testErrorToCreateTaskWithEmptyPriority() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
         String titleTask = "Visitar o Museu Digital de Campina Grande";
@@ -142,7 +142,7 @@ public class TaskManagerFunctionalTests {
     }
 
     @Test
-    public void testErrorToCreateTaskWithNullPriority() {
+    public void testErrorToCreateTaskWithNullPriority() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
         String titleTask = "Visitar o Museu Digital de Campina Grande";
@@ -154,7 +154,7 @@ public class TaskManagerFunctionalTests {
     }
 
     @Test
-    public void testErrorToCreateTaskWithInvalidPriority() {
+    public void testErrorToCreateTaskWithInvalidPriority() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
         String titleTask = "Visitar o Museu Digital de Campina Grande";
@@ -166,462 +166,462 @@ public class TaskManagerFunctionalTests {
     }
 
     @Test
-    public void testSuccessToChangeTitle() {
+    public void testSuccessToChangeTitle() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_CHANGE_TITLE, taskManagerController.updateTitleTask(1, "Cozinhar as refeições da semana"));
     }
 
     @Test
-    public void testSuccessToChangeTitleWithMinimumIndex() {
+    public void testSuccessToChangeTitleWithMinimumIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_CHANGE_TITLE, taskManagerController.updateTitleTask(0, "Comprar papete e camiseta do Senninha"));
     }
 
     @Test
-    public void testSuccessToChangeTitleWithMaximumIndex() {
+    public void testSuccessToChangeTitleWithMaximumIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_CHANGE_TITLE, taskManagerController.updateTitleTask(2, "Preparar documento do projeto de TCC"));
     }
 
     @Test
-    public void testErrorToChangeTitleWithNegativeIndex() {
+    public void testErrorToChangeTitleWithNegativeIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_TITLE, taskManagerController.updateTitleTask(-1, "Comprar roupas para a viagem"));
     }
 
     @Test
-    public void testErrorToChangeTitleWithListSizeIndex() {
+    public void testErrorToChangeTitleWithListSizeIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_TITLE, taskManagerController.updateTitleTask(3, "Comprar roupas para a viagem"));
     }
 
     @Test
-    public void testErrorToChangeTitleWithEmptyTitle() {
+    public void testErrorToChangeTitleWithEmptyTitle() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_TITLE, taskManagerController.updateTitleTask(1, ""));
     }
 
     @Test
-    public void testErrorToChangeTitleWithNullTitle() {
+    public void testErrorToChangeTitleWithNullTitle() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_TITLE, taskManagerController.updateTitleTask(1, null));
     }
 
     @Test
-    public void testSuccessToChangeDescription() {
+    public void testSuccessToChangeDescription() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_CHANGE_DESCRIPTION, taskManagerController.updateDescriptionTask(1, "Preciso cozinhar as refeições da semana, ou não terei o que almoçar nos próximos dias"));
     }
 
     @Test
-    public void testSuccessToChangeDescriptionWithMinimumIndex() {
+    public void testSuccessToChangeDescriptionWithMinimumIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_CHANGE_DESCRIPTION, taskManagerController.updateDescriptionTask(0, "Preciso comprar a papete e a camiseta do Senninha para passar o réveillon padronizado"));
     }
 
     @Test
-    public void testSuccessToChangeDescriptionWithMaximumIndex() {
+    public void testSuccessToChangeDescriptionWithMaximumIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_CHANGE_DESCRIPTION, taskManagerController.updateDescriptionTask(2, "Preciso preparar o documento do projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia"));
     }
 
     @Test
-    public void testErrorToChangeDescriptionWithNegativeIndex() {
+    public void testErrorToChangeDescriptionWithNegativeIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_DESCRIPTION, taskManagerController.updateDescriptionTask(-1, "Preciso cozinhar as refeições da semana, ou não terei o que almoçar nos próximos dias"));
     }
 
     @Test
-    public void testErrorToChangeDescriptionWithListSizeIndex() {
+    public void testErrorToChangeDescriptionWithListSizeIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_DESCRIPTION, taskManagerController.updateDescriptionTask(3, "Preciso cozinhar as refeições da semana, ou não terei o que almoçar nos próximos dias"));
     }
 
     @Test
-    public void testErrorToChangeDescriptionWithNullDescription() {
+    public void testErrorToChangeDescriptionWithNullDescription() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_DESCRIPTION, taskManagerController.updateDescriptionTask(1, null));
     }
 
     @Test
-    public void testSuccessToChangeLimitDate() {
+    public void testSuccessToChangeLimitDate() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
-        assertEquals(SUCCESS_TO_CHANGE_LIMIT_DATE, taskManagerController.updateDateTask(1, "15/09/2023"));
+        assertEquals(SUCCESS_TO_CHANGE_LIMIT_DATE, taskManagerController.updateDateTask(1, "15/10/2023"));
     }
 
     @Test
-    public void testSuccessToChangeLimitDateWithMinimumIndex() {
+    public void testSuccessToChangeLimitDateWithMinimumIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_CHANGE_LIMIT_DATE, taskManagerController.updateDateTask(0, "28/10/2023"));
     }
 
     @Test
-    public void testSuccessToChangeLimitDateWithMaximumIndex() {
+    public void testSuccessToChangeLimitDateWithMaximumIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_CHANGE_LIMIT_DATE, taskManagerController.updateDateTask(2, "30/10/2023"));
     }
 
     @Test
-    public void testErrorToChangeLimitDateWithNegativeIndex() {
+    public void testErrorToChangeLimitDateWithNegativeIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_LIMIT_DATE, taskManagerController.updateDateTask(-1, "15/08/2024"));
     }
 
     @Test
-    public void testErrorToChangeLimitDateWithListSizeIndex() {
+    public void testErrorToChangeLimitDateWithListSizeIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_LIMIT_DATE, taskManagerController.updateDateTask(3, "30/11/2023"));
     }
 
     @Test
-    public void testErrorToChangeLimitDateWithEmptyDate() {
+    public void testErrorToChangeLimitDateWithEmptyDate() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_LIMIT_DATE, taskManagerController.updateDateTask(1, ""));
     }
 
     @Test
-    public void testErrorToChangeLimitDateWithNullDate() {
+    public void testErrorToChangeLimitDateWithNullDate() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_LIMIT_DATE, taskManagerController.updateDateTask(1, null));
     }
 
     @Test
-    public void testErrorToChangeLimitDateWithPastDate() {
+    public void testErrorToChangeLimitDateWithPastDate() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_LIMIT_DATE, taskManagerController.updateDateTask(1, "15/08/2023"));
     }
 
     @Test
-    public void testSuccessToChangePriority() {
+    public void testSuccessToChangePriority() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_CHANGE_PRIORITY, taskManagerController.updatePriorityTask(1, "Alta"));
     }
 
     @Test
-    public void testSuccessToChangePriorityWithMinimumIndex() {
+    public void testSuccessToChangePriorityWithMinimumIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_CHANGE_PRIORITY, taskManagerController.updatePriorityTask(0, "Média"));
     }
 
     @Test
-    public void testSuccessToChangePriorityWithMaximumIndex() {
+    public void testSuccessToChangePriorityWithMaximumIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_CHANGE_PRIORITY, taskManagerController.updatePriorityTask(2, "Alta"));
     }
 
     @Test
-    public void testErrorToChangePriorityWithNegativeIndex() {
+    public void testErrorToChangePriorityWithNegativeIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_PRIORITY, taskManagerController.updatePriorityTask(-1, "Baixa"));
     }
 
     @Test
-    public void testErrorToChangePriorityWithListSizeIndex() {
+    public void testErrorToChangePriorityWithListSizeIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_PRIORITY, taskManagerController.updatePriorityTask(3, "Baixa"));
     }
 
     @Test
-    public void testErrorToChangePriorityWithEmptyPriority() {
+    public void testErrorToChangePriorityWithEmptyPriority() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_PRIORITY, taskManagerController.updateTitleTask(1, ""));
     }
 
     @Test
-    public void testErrorToChangePriorityWithNullPriority() {
+    public void testErrorToChangePriorityWithNullPriority() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_PRIORITY, taskManagerController.updateTitleTask(1, null));
     }
 
     @Test
-    public void testErrorToChangePriorityWithInvalidPriority() {
+    public void testErrorToChangePriorityWithInvalidPriority() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_CHANGE_PRIORITY, taskManagerController.updateTitleTask(2, "Altíssima"));
     }
 
     @Test
-    public void testSuccessToRemoveTask() {
+    public void testSuccessToRemoveTask() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_REMOVE_TASK, taskManagerController.removeTask(1));
     }
 
     @Test
-    public void testSuccessToRemoveTaskWithMinimumIndex() {
+    public void testSuccessToRemoveTaskWithMinimumIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_REMOVE_TASK, taskManagerController.removeTask(0));
     }
 
     @Test
-    public void testSuccessToRemoveTaskWithMaximumIndex() {
+    public void testSuccessToRemoveTaskWithMaximumIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_REMOVE_TASK, taskManagerController.removeTask(2));
     }
 
     @Test
-    public void testErrorToRemoveTaskWithNegativeIndex() {
+    public void testErrorToRemoveTaskWithNegativeIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_REMOVE_TASK, taskManagerController.removeTask(-1));
     }
 
     @Test
-    public void testErrorToRemoveTaskWithListSizeIndex() {
+    public void testErrorToRemoveTaskWithListSizeIndex() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertNotEquals(SUCCESS_TO_REMOVE_TASK, taskManagerController.removeTask(3));
     }
 
     @Test
-    public void testSuccessToListTasks() {
+    public void testSuccessToListTasks() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
-        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa")
+        taskManagerController.createTask("Comprar papete do Senninha", "Preciso comprar a papete do Senninha para passar o réveillon com ela", "30/12/2023", "Baixa");
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate localDate = LocalDate.now();
         taskManagerController.createTask("Cozinhar", "Preciso cozinhar o almoço", dtf.format(localDate), "Alta");
-        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média")
+        taskManagerController.createTask("Preparar projeto do TCC", "Preciso preparar o projeto do meu TCC, contendo resumo, introdução, objetivos, metodologia, cronograma e bibliografia", "01/11/2023", "Média");
 
         assertEquals(SUCCESS_TO_LIST_TASKS, taskManagerController.getSortedTasks());
     }
 
     @Test
-    public void testSuccessToListTasks() {
+    public void testSuccessToListTasksWithEmptyList() throws Exception {
         TaskManagerController taskManagerController = new TaskManagerController();
 
         assertEquals("", taskManagerController.getSortedTasks());
